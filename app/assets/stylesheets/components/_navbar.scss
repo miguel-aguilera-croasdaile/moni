@@ -1,0 +1,21 @@
+.navbar{
+  background-color: white;
+  height: 8vh;
+  padding: 0px 4vw ;
+}
+
+.navbar-left{
+  justify-content: flex-start;
+  width: 50%;
+}
+
+.navbar-right{
+  justify-content: flex-end;
+  width: 50%;
+}
+
+.navbar-link, .navbar-link:hover{
+  padding: 0px 2vw ;
+  text-decoration: none;
+  color: black;
+}

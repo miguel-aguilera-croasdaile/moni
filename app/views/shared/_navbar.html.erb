@@ -1,3 +1,19 @@
 <div class="navbar">
 
+<div class="navbar-left d-flex">
+  <%= link_to "moni", root_path, class: "navbar-link" %>
+</div>
+
+<div class="navbar-right d-flex">
+  <%= link_to "cart", root_path, class: "navbar-link" %>
+  <%= link_to "search", root_path, class: "navbar-link" %>
+  <% if current_user %>
+  <%= link_to "log out", root_path, class: "navbar-link" %>
+  <% else %>
+  <%= link_to "log in", root_path, class: "navbar-link" %>
+  <% end %>
+
+</div>
+
+
 </div>

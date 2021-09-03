@@ -17,21 +17,23 @@ ActiveRecord::Schema.define(version: 2021_08_21_145201) do
 
   create_table "orders", force: :cascade do |t|
     t.string "state"
-    t.string "teddy_sku"
+    t.string "product_sku"
+    t.boolean "paid", default: false
     t.integer "amount_cents", default: 0, null: false
     t.string "checkout_session_id"
     t.bigint "user_id", null: false
-    t.bigint "teddy_id", null: false
+    t.bigint "product_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["teddy_id"], name: "index_orders_on_teddy_id"
+    t.index ["product_id"], name: "index_orders_on_product_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
-  create_table "teddies", force: :cascade do |t|
+  create_table "products", force: :cascade do |t|
     t.string "sku"
     t.string "name"
     t.string "photo_url"
+    t.string "paypal_plan_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "price_cents", default: 0, null: false
@@ -49,6 +51,6 @@ ActiveRecord::Schema.define(version: 2021_08_21_145201) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "orders", "teddies"
+  add_foreign_key "orders", "products"
   add_foreign_key "orders", "users"
 end

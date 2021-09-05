@@ -33,10 +33,11 @@ gem 'autoprefixer-rails', '10.2.5'
 gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'money-rails'
+
 gem 'stripe'
-gem "jquery-rails"
 gem 'stripe_event'
-gem 'paypal-checkout-sdk'
+
+gem "jquery-rails"
 gem 'paypal-sdk-rest'
 
 

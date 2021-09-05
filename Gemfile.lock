@@ -136,12 +136,9 @@ GEM
     nokogiri (1.12.3-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
-    paypal-checkout-sdk (1.0.3)
-      paypalhttp (~> 1.0.0)
     paypal-sdk-rest (1.7.4)
       multi_json (~> 1.0)
       xml-simple
-    paypalhttp (1.0.0)
     pg (1.2.3)
     pry (0.13.1)
       coderay (~> 1.1)
@@ -221,7 +218,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    stripe (5.37.0)
+    stripe (5.38.0)
     stripe_event (2.3.1)
       activesupport (>= 3.1)
       stripe (>= 2.8, < 6)
@@ -272,7 +269,6 @@ DEPENDENCIES
   jquery-rails
   listen (~> 3.3)
   money-rails
-  paypal-checkout-sdk
   paypal-sdk-rest
   pg (~> 1.1)
   pry-byebug

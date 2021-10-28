@@ -16,11 +16,9 @@ ActiveRecord::Schema.define(version: 2021_08_21_145201) do
   enable_extension "plpgsql"
 
   create_table "orders", force: :cascade do |t|
-    t.string "state"
-    t.string "product_sku"
+    t.string "status"
     t.boolean "paid", default: false
     t.integer "amount_cents", default: 0, null: false
-    t.string "checkout_session_id"
     t.bigint "user_id", null: false
     t.bigint "product_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -33,7 +31,6 @@ ActiveRecord::Schema.define(version: 2021_08_21_145201) do
     t.string "sku"
     t.string "name"
     t.string "photo_url"
-    t.string "paypal_plan_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "price_cents", default: 0, null: false

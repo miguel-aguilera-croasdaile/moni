@@ -4,7 +4,6 @@
     <% @products.each do |product| %>
       <div class="col-6 col-md-4">
         <div class="card">
-          <%= image_tag product.photo_url , class: "card-img-top" %>
           <div class="card-body">
             <h5 class="card-title"><%= product.name %></h5>
             <p>Amount: <%= humanized_money_with_symbol(product.price) %></p>

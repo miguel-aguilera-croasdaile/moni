@@ -34,11 +34,7 @@ gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'money-rails'
 
-gem 'stripe'
-gem 'stripe_event'
-
-gem "jquery-rails"
-gem 'paypal-sdk-rest'
+gem "pundit"
 
 
 group :development, :test do  gem 'pry-byebug'

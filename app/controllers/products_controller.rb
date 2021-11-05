@@ -25,7 +25,7 @@ class ProductsController < ApplicationController
 
   def add_to_cart
     @product = Product.find(params[:product_id])
-    CartItem.create(product: @product, cart: @cart)
+    CartItem.create(product: @product, cart: @cart, amount: @product.price)
     redirect_to cart_path
   end
 

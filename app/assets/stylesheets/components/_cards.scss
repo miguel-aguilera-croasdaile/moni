@@ -1,0 +1,31 @@
+.index-wrapper{
+  padding: 0 15px;
+  padding-top: 30px
+}
+
+.product-card-wrapper, .product-card-wrapper > a{
+  color: black;
+}
+
+.product-card-wrapper:hover{
+  a{text-decoration: none;}
+}
+// .product-card{
+//   border-radius: 5px;
+//   padding: 20px;
+//   background-color: white;
+//   border: 1px solid gray
+// }
+
+.product-flat{
+  padding: 20px;
+  background-color: white;
+}
+
+.stars, .certificates{
+  i{line-height: inherit !important;}
+}
+
+.small-image{
+  border-radius: $border-radius;
+}

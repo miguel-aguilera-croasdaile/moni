@@ -1,25 +1,49 @@
 <div class="container">
+  <br>
   <div class="row">
     <div class="col-sm-12 col-md-7">
+      breadcumbs > breadcumbs > breadcrumbs
     </div>
     <div class="col-sm-12 col-md-5">
-      <p><%= @product.name %></p>
-      <p><%= @product.description %></p>
-      <p><%= @product.price %></p>
-
-      <hr>
-
-      <%= link_to "/add_to_cart/#{@product.id}" do %>
-      <button class="btn btn-primary">Add to Cart</button>
-      <% end %>
-
-      <br>
-
-      <%= link_to "/buy/#{@product.id}" do %>
-      <button class="btn btn-primary">Buy</button>
-      <% end %>
-
-
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-sm-12 col-md-7">
+      <%= cl_image_tag(@product.photo.key, width: "100%", height: "100%", crop: :cover) %>
+    </div>
+    <div class="col-sm-12 col-md-5">
+      <div class="product-info">
+        <div class="col-12">
+          <p><%= @product.name %></p>
+          <p><%= @product.description %></p>
+          <p><%= @product.price %></p>
+        </div>
+      </div>
+      <div class="product-description">
+        <div class="col-12">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+            nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+            voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+            mollit anim id est laborum</p>
+        </div>
+      </div>
+      <div class="product-purchasing">
+        <div class="col-12">
+          <%= link_to "/add_to_cart/#{@product.id}" do %>
+            <button class="button primary-button wide-button">Add to Cart</button>
+          <% end %>
+        </div>
+        <br>
+        <div class="col-12">
+          <%= link_to "/buy/#{@product.id}" do %>
+            <button class="button primary-button wide-button">Buy</button>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

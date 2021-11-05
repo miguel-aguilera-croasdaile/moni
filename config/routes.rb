@@ -1,12 +1,17 @@
 Rails.application.routes.draw do
-  devise_for :users
   root to: 'pages#home'
-  resources :products, only: [:index, :show]
+  devise_for :users
+
+  resources :products
+
   resources :orders, only: [:index, :show, :create] do
     resources :payments, only: :new
   end
 
-  post '/orders/submit', to: 'orders#submit'
+  get "/add_to_cart/:product_id", to: "products#add_to_cart"
+  get "/buy/:product_id", to: "products#buy_directly"
+
+  get "/cart", to: "pages#show_cart"
 
 
 end

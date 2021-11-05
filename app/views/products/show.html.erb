@@ -1,21 +1,25 @@
-<div class="container py-3">
+<div class="container">
   <div class="row">
-    <div class="col-sm-12 col-md-6">
-      <%= image_tag(@product.photo_url, width: '100%') %>
+    <div class="col-sm-12 col-md-7">
     </div>
-    <div class="col-sm-12 col-md-6">
-      <h1><%= @product.name %></h1>
-      <p>Some awesome description of our amazing product.</p>
-      <p>Amount: <%= humanized_money_with_symbol(@product.price) %></p>
-      <% if @order %>
-        <%= link_to order_path(@order) do %>
-        <div class="btn btn-primary">Pay Now</div>
-        <% end %>
-      <% else %>
-        <%= form_tag orders_path do %>
-          <%= hidden_field_tag 'product_id', @product.id %>
-          <%= submit_tag 'Buy Now', class: 'btn btn-primary' %>
-        <% end %>      <% end %>
+    <div class="col-sm-12 col-md-5">
+      <p><%= @product.name %></p>
+      <p><%= @product.description %></p>
+      <p><%= @product.price %></p>
+
+      <hr>
+
+      <%= link_to "/add_to_cart/#{@product.id}" do %>
+      <button class="btn btn-primary">Add to Cart</button>
+      <% end %>
+
+      <br>
+
+      <%= link_to "/buy/#{@product.id}" do %>
+      <button class="btn btn-primary">Buy</button>
+      <% end %>
+
+
     </div>
   </div>
 </div>

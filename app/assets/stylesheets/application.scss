@@ -17,9 +17,12 @@ body{
   height: 100vh;
 }
 
+div{
+  border: 1px solid gray
+}
+
 .card{
   margin: 10px;
   border: 1px solid red;
-  height: 100%;
   justify-content: space-between;
 }

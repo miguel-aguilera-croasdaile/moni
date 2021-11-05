@@ -3,4 +3,8 @@ class PagesController < ApplicationController
 
   def home
   end
+
+  def show_cart
+    @order = Order.new
+  end
 end

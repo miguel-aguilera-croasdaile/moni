@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row">
+    <% @orders.each do |order| %>
+      <div class="col-12">
+        <div class="card">
+          <h5><%= order.status %></h5>
+          <h5><%= order.paid %></h5>
+          <h5><%= order.amount %></h5>
+          <h5><%= order.created_at %></h5>
+          <h5><%= order.updated_at %></h5>
+          <h5><%= order.product.name %></h5>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

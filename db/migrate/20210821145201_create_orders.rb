@@ -1,11 +1,9 @@
 class CreateOrders < ActiveRecord::Migration[6.1]
   def change
     create_table :orders do |t|
-      t.string :status
-      t.boolean :paid, :default => false
-      t.monetize :amount, currency: { present: false }
+      t.string :status, default: "pending"
+      t.float :amount
       t.references :user, null: false, foreign_key: true
-      t.references :product, null: false, foreign_key: true
       t.timestamps
     end
   end

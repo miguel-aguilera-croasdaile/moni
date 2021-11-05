@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  skip_before_action :authenticate_user!
+  skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
     @products = Product.all
@@ -7,10 +7,45 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+  end
 
-    if Order.exists?(product: @product, user: current_user)
-      @order = Order.where(product: @product, user: current_user)[0]
+  def new
+    @product = Product.new
+  end
+
+  def create
+    @product = Product.new(product_params)
+    @product.save
+    if @product.save
+      redirect_to product_path(@product)
+    else
+      render product_new
     end
   end
+
+  def add_to_cart
+    @product = Product.find(params[:product_id])
+    CartItem.create(product: @product, cart: @cart)
+    redirect_to cart_path
+  end
+
+  def buy_directly
+    @product = Product.find(params[:product_id])
+    @order = Order.create(user: current_user)
+    order_item = OrderItem.new(order: @order, product: @product, amount: @product.price)
+    order_item.save!
+    @order.update(amount: order_item.amount)
+    @order.save!
+
+    redirect_to order_path(@order)
+
+  end
+
+  private
+
+  def product_params
+    params.require(:product).permit(:name, :description, :price, :stock, :made_to_order?, :available)
+  end
+
 
 end

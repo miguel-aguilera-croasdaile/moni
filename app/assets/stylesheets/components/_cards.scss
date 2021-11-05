@@ -5,10 +5,15 @@
 
 .product-card-wrapper, .product-card-wrapper > a{
   color: black;
+  p{margin:0; transition: all 0.25s ease}
 }
 
 .product-card-wrapper:hover{
   a{text-decoration: none;}
+  color: $primary !important;
+  .product-name{
+    color: $primary;
+  }
 }
 // .product-card{
 //   border-radius: 5px;

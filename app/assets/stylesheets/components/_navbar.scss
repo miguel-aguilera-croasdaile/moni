@@ -16,7 +16,12 @@
 }
 
 .navbar-link, .navbar-link:hover{
+  color: black;
   padding: 0px 2vw ;
   text-decoration: none;
-  color: black;
+  transition: all 0.25s ease;
+}
+
+.navbar-link:hover{
+  color: $primary;
 }

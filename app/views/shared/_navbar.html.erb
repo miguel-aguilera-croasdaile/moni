@@ -3,6 +3,9 @@
     <%= link_to "moni", root_path, class: "navbar-link" %>
   </div>
   <div class="navbar-right d-flex">
+    <% if policy(Product).create? %>
+      <%= link_to "new product", new_product_path, class: "navbar-link" %>
+    <% end %>
     <%= link_to "browse", products_path, class: "navbar-link" %>
     <%= link_to "cart", "/cart", class: "navbar-link" %>
     <% if current_user %>

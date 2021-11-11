@@ -10,8 +10,8 @@
   <br>
   <div class="row">
     <div class="col-sm-12 col-md-7">
-      <div class="image-wrapper">
-        <%= cl_image_tag(@product.photo_url, width: "100%", height: "100%", crop: :cover) %>
+      <div class="product-image-wrapper">
+        <%= cl_image_tag @product.photo.key, :crop=>"fill", class: "image-wrapper" %>
       </div>
     </div>
     <div class="col-sm-12 col-md-5">
@@ -19,19 +19,11 @@
         <div class="col-12">
           <p><%= @product.name %></p>
           <p><%= @product.description %></p>
-          <p><%= @product.price %></p>
         </div>
       </div>
-
-      <div class="product-description">
+      <div class="product-pricing">
         <div class="col-12">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-            nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-            voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum</p>
+          <p>$<%= @product.price %></p>
         </div>
       </div>
       <div class="product-purchasing">

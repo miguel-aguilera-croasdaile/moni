@@ -7,7 +7,6 @@ class CreateProducts < ActiveRecord::Migration[6.1]
       t.float :price
       t.boolean :made_to_order?, default: false
       t.boolean :available, default: true
-      t.string :photo_url
       t.timestamps
     end
   end

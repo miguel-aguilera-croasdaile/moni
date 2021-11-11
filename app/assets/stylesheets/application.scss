@@ -14,11 +14,12 @@
 
 
 body{
-  height: 100vh;
+  min-height: 92vh;
 }
-// div{
-//   border: 1px solid
-// }
+.body{
+  padding-top: 8vh;
+  min-height: 92vh;
+}
 .no-padding{
   padding: 0 !important;
 }

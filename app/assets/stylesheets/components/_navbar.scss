@@ -1,6 +1,10 @@
 .navbar{
+  position: fixed;
+  top: 0;
+  z-index: 10000;
   background-color: white;
   height: 8vh;
+  width: 100vw;
   padding: 0px 4vw ;
   border-bottom: 1px solid gray;
 }
@@ -24,4 +28,18 @@
 
 .navbar-link:hover{
   color: $primary;
+}
+
+.cart-counter{
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  font-size: 70%;
+  background-color: red;
+  border-radius: 50%;
+  color: white;
+  p{margin: 0;}
+  text-align: center;
+  justify-content: center;
+  align-items: center;
 }

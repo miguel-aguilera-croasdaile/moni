@@ -1,9 +1,10 @@
 puts 'Cleaning database...'
-
 puts 'Creating products...'
-Product.create!(name: 'Product bear', photo_url: 'https://cdn-ak.f.st-hatena.com/images/fotolife/s/suzumidokoro/20160413/20160413220730.jpg', price: 1000, made_to_order?: false, stock: 10)
-Product.create!(name: 'Jean-Michel - Le Wagon', photo_url: 'https://pbs.twimg.com/media/B_AUcKeU4AE6ZcG.jpg:large', price: 1000, made_to_order?: false, stock: 10)
-Product.create!(name: 'Octocat -  GitHub',      photo_url: 'https://cdn-ak.f.st-hatena.com/images/fotolife/s/suzumidokoro/20160413/20160413220730.jpg', price: 1000, made_to_order?: false, stock: 10)
+# 5.times do
+#   Product.create!(name: Faker::Coffee.blend_name, description: Faker::Coffee.notes, price: 1000, made_to_order?: false, stock: 10)
+# end
+
 puts 'Creating users...'
-u = User.create!(email: "miguel.aguilera.croasdaile@gmail.com", password: "123456", password_confirmation: "123456")
+u = User.create!(email: "miguel.aguilera.croasdaile@gmail.com", password: "123456", password_confirmation: "123456", admin: true)
+u = User.create!(email: "miguel@gmail.com", password: "123456", password_confirmation: "123456", admin: false)
 puts 'Finished!'

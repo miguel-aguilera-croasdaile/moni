@@ -11,10 +11,12 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
+    authorize @product, :new?
   end
 
   def create
     @product = Product.new(product_params)
+    authorize @product, :create?
     @product.save
     if @product.save
       redirect_to product_path(@product)
@@ -44,7 +46,7 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:name, :description, :price, :stock, :made_to_order?, :available, :photo, :photo_url)
+    params.require(:product).permit(:name, :description, :price, :stock, :made_to_order?, :available, :photo)
   end
 
 

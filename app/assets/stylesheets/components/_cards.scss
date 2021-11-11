@@ -15,12 +15,13 @@
     color: $primary;
   }
 }
-// .product-card{
-//   border-radius: 5px;
-//   padding: 20px;
-//   background-color: white;
-//   border: 1px solid gray
-// }
+
+.product-image-wrapper{
+  min-height: 150px;
+  border-radius: $border-radius;
+  width: 100%;
+  background-color: $primary;
+}
 
 .product-flat{
   padding: 20px;

@@ -11,15 +11,16 @@ class OrdersController < ApplicationController
   def create
     @order = Order.create(user: current_user)
     @order.save!
-    @order.amount = 0
+    @order.price = 0
 
     @cart.cart_items.each do |c|
       order_item = OrderItem.new
       order_item.order = @order
       order_item.product = c.product
-      order_item.amount = order_item.product.price
+      order_item.price = c.price
+      order_item.amount = c.amount
       order_item.save!
-      @order.update(amount: @order.amount += order_item.amount)
+      @order.update(price: @order.price += order_item.price)
     end
 
     @order.save!

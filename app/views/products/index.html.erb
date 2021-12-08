@@ -1,23 +1,17 @@
-<div class="container">
-  <br>
+<div class="container-placeholder">
   <div class="row">
-    <div class="col-12">
-      <div class="row">
-        <% @products.each do |l| %>
-          <div class="product-card-wrapper col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4" style="margin-bottom: 20px">
-            <%= link_to product_path(l) do %>
-              <div class="product-card">
-                <div class="product-image-wrapper">
-                  <%= cl_image_tag l.photo.key, :crop=>"fill", class: "image-wrapper" %>
-                </div>
-                <hr>
-                <p class="product-name"><%= l.name %></p>
-                <p> $<%= l.price %></p>
-              </div>
-            <% end %>
+    <% @products.each do |l| %>
+      <div class="product-card-wrapper col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+        <%= link_to product_path(l) do %>
+          <div class="product-card">
+            <div class="product-image-wrapper">
+              <%= cl_image_tag l.photo.key, :crop=>"fill", class: "image-wrapper" %>
+            </div>
+            <p class="product-name"><%= l.name %></p>
+            <p> <b> $<%= l.price %> </b> </p>
           </div>
         <% end %>
       </div>
-    </div>
+    <% end %>
   </div>
 </div>

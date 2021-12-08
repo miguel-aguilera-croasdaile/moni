@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :show]
+  # skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
     @products = Product.all
@@ -27,16 +27,16 @@ class ProductsController < ApplicationController
 
   def add_to_cart
     @product = Product.find(params[:product_id])
-    CartItem.create(product: @product, cart: @cart, amount: @product.price)
-    redirect_to cart_path
+    c = CartItem.create(product: @product, cart: @cart, price: @product.price, quantity: 1)
+    redirect_to cart_path, cart_add: "#{c.id} created!"
   end
 
   def buy_directly
     @product = Product.find(params[:product_id])
     @order = Order.create(user: current_user)
-    order_item = OrderItem.new(order: @order, product: @product, amount: @product.price)
+    order_item = OrderItem.new(order: @order, product: @product, price: @product.price)
     order_item.save!
-    @order.update(amount: order_item.amount)
+    @order.update(price: order_item.price)
     @order.save!
 
     redirect_to order_path(@order)

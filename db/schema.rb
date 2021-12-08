@@ -46,7 +46,8 @@ ActiveRecord::Schema.define(version: 2021_11_07_152217) do
   create_table "cart_items", force: :cascade do |t|
     t.bigint "cart_id", null: false
     t.bigint "product_id", null: false
-    t.float "amount"
+    t.float "price"
+    t.integer "quantity"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["cart_id"], name: "index_cart_items_on_cart_id"
@@ -54,7 +55,8 @@ ActiveRecord::Schema.define(version: 2021_11_07_152217) do
   end
 
   create_table "carts", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
+    t.boolean "guest?", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_carts_on_user_id"
@@ -63,7 +65,8 @@ ActiveRecord::Schema.define(version: 2021_11_07_152217) do
   create_table "order_items", force: :cascade do |t|
     t.bigint "order_id", null: false
     t.bigint "product_id", null: false
-    t.float "amount"
+    t.float "price"
+    t.integer "quantity"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["order_id"], name: "index_order_items_on_order_id"
@@ -72,7 +75,7 @@ ActiveRecord::Schema.define(version: 2021_11_07_152217) do
 
   create_table "orders", force: :cascade do |t|
     t.string "status", default: "pending"
-    t.float "amount"
+    t.float "price"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -81,6 +84,7 @@ ActiveRecord::Schema.define(version: 2021_11_07_152217) do
 
   create_table "products", force: :cascade do |t|
     t.string "name"
+    t.string "size"
     t.string "description"
     t.integer "stock"
     t.float "price"

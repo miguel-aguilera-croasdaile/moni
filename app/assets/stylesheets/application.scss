@@ -14,12 +14,27 @@
 
 
 body{
-  min-height: 92vh;
+  min-height: 100vh;
+  background-color: $white;
 }
+
+// div{
+//   border: 1px solid red;
+//   padding: 10px;
+// }
 .body{
-  padding-top: 8vh;
-  min-height: 92vh;
+  min-height: 100vh;
+  padding: 0 !important;
+  padding-top: 8vh !important;
 }
 .no-padding{
   padding: 0 !important;
+}
+
+.row-placeholder{
+  display: flex;
+}
+
+.row{
+  margin: 0
 }

@@ -1,17 +1,19 @@
-<div class="container">
+<div class="container-placeholder">
   <div class="row py-4">
     <div class="col-8">
       <h1>Order #<%= @order.id %> </h1>
       <div class="list-unstyled">
         <p><strong>ISSUED ON</strong> <%= @order.created_at.to_date %></p>
         <% @order.order_items.each do |oi| %>
-        <p><%= oi.product.name %></p>
+          <p><%= oi.product.name %></p>
         <% end %>
-        <p><strong>ORDER TOTAL:</strong> <%= @order.amount %></p>
+        <p><strong>ORDER TOTAL:</strong> <%= @order.price %></p>
       </div>
     </div>
     <div class="col-4">
-      <div class="btn btn-primary">Pay Now</div>
+      <%= link_to new_order_payment_path(@order) do  %>
+        <div class="btn btn-primary">Pay Now</div>
+      <% end %>
     </div>
   </div>
 </div>

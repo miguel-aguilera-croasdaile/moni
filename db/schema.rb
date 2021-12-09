@@ -74,9 +74,11 @@ ActiveRecord::Schema.define(version: 2021_11_07_152217) do
   end
 
   create_table "orders", force: :cascade do |t|
+    t.bigint "user_id"
+    t.boolean "guest?", default: true
     t.string "status", default: "pending"
+    t.string "customer_session_id"
     t.float "price"
-    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_orders_on_user_id"

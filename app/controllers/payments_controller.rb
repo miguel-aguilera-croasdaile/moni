@@ -1,5 +1,9 @@
 class PaymentsController < ApplicationController
   def new
-    @order = current_user.orders.where(status: 'pending').find(params[:order_id])
+    if user_signed_in?
+      @order = current_user.orders.find(params[:id])
+    else
+      @order = Order.where(customer_session_id: session[:session_id])[0]
+    end
   end
 end

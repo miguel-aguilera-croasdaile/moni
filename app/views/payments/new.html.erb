@@ -1,3 +1,44 @@
 <div class="container-placeholder">
-  <h1>TODO: PLUG AND PLAY PAYMENT PAGE</h1>
+  <div class="row-placeholder">
+    <div class="col-sm-12 col-md-7">
+      breadcumbs > breadcumbs > breadcrumbs
+    </div>
+    <div class="col-sm-12 col-md-5">
+    </div>
+  </div>
+  <div class="row-placeholder">
+    <div class="col-sm-12 col-md-7">
+      <div class="product-image-wrapper">
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-5">
+      <div class="product-purchasing">
+        <div id="paypal-button-container"></div>
+      </div>
+    </div>
+  </div>
 </div>
+<script  src="https://www.paypal.com/sdk/js?client-id=ARwg6l5EMoWDgtFn6Xk6DWHxsM_Gn58Z1uAUxNditIkDaq_ZxVgWvKZ6c71aqB6wAosmG8dhzMw_2wUX"></script>
+
+<script>
+  paypal.Buttons({
+    createOrder: function(data, actions) {
+      // This function sets up the details of the transaction, including the amount and line item details.
+      return actions.order.create({
+        purchase_units: [{
+          amount: {
+            value: '0.01'
+          }
+        }]
+      });
+    },
+    onApprove: function(data, actions) {
+      // This function captures the funds from the transaction.
+      return actions.order.capture().then(function(details) {
+        // This function shows a transaction success message to your buyer.
+        alert('Transaction completed by ' + details.payer.name.given_name);
+      });
+    }
+  }).render('#paypal-button-container');
+  //This function displays Smart Payment Buttons on your web page.
+</script>

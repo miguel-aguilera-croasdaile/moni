@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
     if user_signed_in?
       @orders = Order.where(user: current_user)
     else
-      @order = Order.where(customer_session_id: session[:session_id])[0]
+      @orders = Order.where(customer_session_id: session[:session_id])
     end
   end
 

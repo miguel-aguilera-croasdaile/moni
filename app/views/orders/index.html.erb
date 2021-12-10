@@ -1,12 +1,16 @@
 <div class="container-placeholder">
-  <div class="row-placeholder">
+  <div class="row">
     <% @orders.each do |order| %>
-      <div class="col-12">
-        <h1>Order #<%= order.id %> <small><span class="badge badge-primary"><%= order.status %></span></small></h1>
-          <p><strong>ISSUED ON</strong> <%= order.created_at.to_date %></p>
-          <p><strong><%= order.order_items.count %> Items</strong> </p>
-          <p><strong>ORDER TOTAL:</strong> <%= order.price %></p>
-          <p><strong>ORDER STATUS:</strong> <%= order.status %></p>
+      <div class="product-card-wrapper col-12">
+        <%= link_to order_path(order) do %>
+          <div class="product-card">
+            <h1>Order #<%= order.id %> <small><span class="badge badge-primary"><%= order.status %></span></small></h1>
+            <p><strong>ISSUED ON</strong> <%= order.created_at.to_date %></p>
+            <p><strong><%= order.order_items.count %> Items</strong> </p>
+            <p><strong>ORDER TOTAL:</strong> <%= order.price %></p>
+            <p><strong>ORDER STATUS:</strong> <%= order.status %></p>
+          </div>
+        <% end %>
       </div>
     <% end %>
   </div>

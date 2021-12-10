@@ -1,7 +1,6 @@
 <div class="container-placeholder">
   <div class="row-placeholder">
     <div class="col-sm-12 col-md-7">
-      breadcumbs > breadcumbs > breadcrumbs
     </div>
     <div class="col-sm-12 col-md-5">
     </div>
@@ -18,16 +17,18 @@
     </div>
   </div>
 </div>
+
 <script  src="https://www.paypal.com/sdk/js?client-id=ARwg6l5EMoWDgtFn6Xk6DWHxsM_Gn58Z1uAUxNditIkDaq_ZxVgWvKZ6c71aqB6wAosmG8dhzMw_2wUX"></script>
 
 <script>
+  price = '<%= @order.price %>';
   paypal.Buttons({
     createOrder: function(data, actions) {
       // This function sets up the details of the transaction, including the amount and line item details.
       return actions.order.create({
         purchase_units: [{
           amount: {
-            value: '0.01'
+            value: price
           }
         }]
       });
@@ -38,6 +39,7 @@
         // This function shows a transaction success message to your buyer.
         alert('Transaction completed by ' + details.payer.name.given_name);
       });
+      // post to controller to update order status
     }
   }).render('#paypal-button-container');
   //This function displays Smart Payment Buttons on your web page.

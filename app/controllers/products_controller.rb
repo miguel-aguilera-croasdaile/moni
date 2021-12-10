@@ -27,20 +27,13 @@ class ProductsController < ApplicationController
 
   def add_to_cart
     @product = Product.find(params[:product_id])
-    c = CartItem.create(product: @product, cart: @cart, price: @product.price, quantity: 1)
+    if CartItem.exists?(product: @product, cart: @cart, price: @product.price)
+      c = CartItem.where(product: @product, cart: @cart, price: @product.price)[0]
+      c.update(quantity: c.quantity += 1)
+    else
+      CartItem.create(product: @product, cart: @cart, price: @product.price, quantity: 1)
+    end
     redirect_to cart_path, cart_add: "#{c.id} created!"
-  end
-
-  def buy_directly
-    @product = Product.find(params[:product_id])
-    @order = Order.create(user: current_user)
-    order_item = OrderItem.new(order: @order, product: @product, price: @product.price)
-    order_item.save!
-    @order.update(price: order_item.price)
-    @order.save!
-
-    redirect_to order_path(@order)
-
   end
 
   private

@@ -7,6 +7,7 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    @order = Order.new
   end
 
   def new
@@ -34,6 +35,27 @@ class ProductsController < ApplicationController
       c = CartItem.create(product: @product, cart: @cart, price: @product.price, quantity: 1)
     end
     redirect_to cart_path, cart_add: "#{c.id} created!"
+  end
+
+  def buy_directly
+    @product = Product.find(params[:product_id])
+    @order = Order.new()
+    if user_signed_in?
+      @order.update(user: current_user)
+    else
+      @order.update(customer_session_id: session[:session_id])
+    end
+    oi = OrderItem.new
+    oi.order = @order
+    oi.product = @product
+    oi.price = @product.price
+    oi.quantity = 1
+    oi.save!
+    @order.price = @product.price
+    @order.save!
+    if @order.save
+      redirect_to order_path(@order)
+    end
   end
 
   private

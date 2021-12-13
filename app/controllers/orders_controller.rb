@@ -37,8 +37,6 @@ class OrdersController < ApplicationController
     @order.save!
     if @order.save
       @cart.clear
-    else
-      raise
     end
     redirect_to order_path(@order)
   end

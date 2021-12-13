@@ -23,6 +23,10 @@
   background-color: $primary;
 }
 
+.product-image-wrapper.small{
+  min-height: 100px;
+}
+
 .product-flat{
   padding: 20px;
   background-color: white;

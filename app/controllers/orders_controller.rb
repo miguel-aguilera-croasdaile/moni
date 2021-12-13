@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
     if user_signed_in?
       @order = current_user.orders.find(params[:id])
     else
-      @order = Order.where(customer_session_id: session[:session_id])[0]
+      @order = Order.where(customer_session_id: session[:session_id]).find(params[:id])
     end
   end
 
@@ -30,6 +30,7 @@ class OrdersController < ApplicationController
       order_item.order = @order
       order_item.product = c.product
       order_item.price = c.price
+      order_item.quantity = c.quantity
       order_item.save!
       @order.update(price: @order.price += order_item.price)
     end

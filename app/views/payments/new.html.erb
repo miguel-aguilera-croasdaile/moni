@@ -1,25 +1,32 @@
 <div class="container-placeholder">
   <div class="row-placeholder">
-    <div class="col-sm-12 col-md-7">
-    </div>
-    <div class="col-sm-12 col-md-5">
-    </div>
-  </div>
-  <div class="row-placeholder">
-    <div class="col-sm-12 col-md-7">
-      <div class="product-image-wrapper">
+    <div class="col-7">
+      <div class="shipping-info-form">
       </div>
+      <div id="paypal-button-container"></div>
     </div>
-    <div class="col-sm-12 col-md-5">
-      <div class="product-purchasing">
-        <div id="paypal-button-container"></div>
+    <div class="col-5">
+      <% @order.order_items.each do |c| %>
+        <div class="row-placeholder">
+          <div class="col-4">
+            <div class="product-image-wrapper small"></div>
+          </div>
+          <div class="col-4">
+            <p><%= c.product.name %> x <%= c.quantity %></p>
+          </div>
+          <div class="col-4">
+            <p>$<%= c.price * c.quantity %></p>
+          </div>
+        </div>
+      <% end %>
+      <hr>
+      <div class="row-placeholder d-flex justify-content-end">
+        Subtotal: <p> $ <%= @total %></p>
       </div>
     </div>
   </div>
 </div>
-
 <script  src="https://www.paypal.com/sdk/js?client-id=ARwg6l5EMoWDgtFn6Xk6DWHxsM_Gn58Z1uAUxNditIkDaq_ZxVgWvKZ6c71aqB6wAosmG8dhzMw_2wUX"></script>
-
 <script>
   price = '<%= @order.price %>';
   paypal.Buttons({

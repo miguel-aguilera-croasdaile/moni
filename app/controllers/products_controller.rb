@@ -31,7 +31,7 @@ class ProductsController < ApplicationController
       c = CartItem.where(product: @product, cart: @cart, price: @product.price)[0]
       c.update(quantity: c.quantity += 1)
     else
-      CartItem.create(product: @product, cart: @cart, price: @product.price, quantity: 1)
+      c = CartItem.create(product: @product, cart: @cart, price: @product.price, quantity: 1)
     end
     redirect_to cart_path, cart_add: "#{c.id} created!"
   end

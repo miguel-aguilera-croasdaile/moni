@@ -1,17 +1,11 @@
-<div class="container-placeholder">
-  <div class="row-placeholder">
-    <div class="col-sm-12 col-md-7">
-    </div>
-    <div class="col-sm-12 col-md-5">
-    </div>
-  </div>
-  <div class="row-placeholder">
-    <div class="col-sm-12 col-md-7">
+<div class="wrapper">
+  <div class="row">
+    <div class="col-12 col-md-7">
       <div class="product-image-wrapper">
         <% cl_image_tag @product.photo.key, :crop=>"fill", class: "image-wrapper" %>
       </div>
     </div>
-    <div class="col-sm-12 col-md-5">
+    <div class="col-12 col-md-5">
       <div class="product-info">
         <div class="col-12">
           <p><%= @product.name %></p>
@@ -23,7 +17,7 @@
           <p>$<%= @product.price %></p>
         </div>
       </div>
-      <div class="product-purchasing row-placeholder">
+      <div class="product-purchasing row">
         <div class="col-6">
           <%= link_to "/add_to_cart/#{@product.id}" do %>
             <button class="button primary-button wide-button">Add to Cart</button>

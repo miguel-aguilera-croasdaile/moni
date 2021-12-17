@@ -1,23 +1,23 @@
-<div class="container-placeholder">
-  <div class="row-placeholder">
+<div class="wrapper">
+  <div class="d-flex">
     <div class="col-8">
       <h3> Order #<%= @order.id %> <small><span class="badge badge-primary"><%= @order.status %></span></small></h3>
       <p><strong>ISSUED ON</strong> <%= @order.created_at.to_date %></p>
-      <div class="row-placeholder">
+      <div class="d-flex">
         <div class="col-3"><b> Product </b></div>
         <div class="col-3"><b> Price </b></div>
         <div class="col-3"><b> Quantity </b></div>
         <div class="col-3"><b> Total </b></div>
       </div>
       <% @order.order_items.each do |c| %>
-        <div class="row-placeholder">
+        <div class="d-flex">
           <div class="col-3">
             <p><%= c.product.name %></p>
           </div>
           <div class="col-3">
             <p><%= c.price %></p>
           </div>
-          <div class="col-3 row-placeholder">
+          <div class="col-3 d-flex">
             <p><%= c.quantity %></p>
           </div>
           <div class="col-3">

@@ -1,5 +1,5 @@
-<div class="container-placeholder">
-  <div class="row-placeholder">
+<div class="wrapper">
+  <div class="d-flex">
     <div class="col-7">
       <div class="shipping-info-form">
       </div>
@@ -7,7 +7,7 @@
     </div>
     <div class="col-5">
       <% @order.order_items.each do |c| %>
-        <div class="row-placeholder">
+        <div class="d-flex">
           <div class="col-4">
             <div class="product-image-wrapper small"></div>
           </div>
@@ -20,8 +20,9 @@
         </div>
       <% end %>
       <hr>
-      <div class="row-placeholder d-flex justify-content-end">
-        Subtotal: <p> $ <%= @total %></p>
+      <div class="d-flex justify-content-end">
+        Subtotal:
+        <p> $ <%= @total %></p>
       </div>
     </div>
   </div>

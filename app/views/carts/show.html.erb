@@ -1,25 +1,25 @@
-<div class="container-placeholder">
+<div class="wrapper">
   <h4>Your Cart </h4>
   <% if @cart.cart_items.blank? %>
     <p>Your cart is empty <%= link_to "Keep Shopping!", products_path %></p>
   <% else %>
-    <div class="row-placeholder">
+    <div class="d-flex">
       <div class="col-8">
-        <div class="row-placeholder">
+        <div class="d-flex">
           <div class="col-3"><b> Product </b></div>
           <div class="col-3"><b> Price </b></div>
           <div class="col-3"><b> Quantity </b></div>
           <div class="col-3"><b> Total </b></div>
         </div>
         <% @cart.cart_items.each do |c| %>
-          <div class="row-placeholder">
+          <div class="d-flex">
             <div class="col-3">
               <p><%= c.product.name %></p>
             </div>
             <div class="col-3">
               <p><%= c.price %></p>
             </div>
-            <div class="col-3 row-placeholder">
+            <div class="col-3 d-flex">
               <%= link_to "-", cart_cart_item_path(@cart, c), method: :delete %>
               <p><%= c.quantity %></p>
               <%= link_to "+", cart_cart_item_path(@cart, c), method: :delete %>
@@ -31,7 +31,7 @@
         <% end %>
       </div>
       <div class="col-4">
-        <div class="row-placeholder">
+        <div class="d-flex">
           <div class="col-12">
             <h5>Total</h5>
             <p><b><%= @total %></b></p>

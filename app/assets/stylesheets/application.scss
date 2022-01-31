@@ -18,12 +18,15 @@ body{
   background-color: $white;
 }
 
-div{
-  border: 1px solid red;
-  padding: 10px;
+.placeholder-div{
+  height: 92vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
 }
 .body{
-  min-height: 100vh;
+  min-height: 92vh;
   padding: 0 !important;
   padding-top: 8vh !important;
 }

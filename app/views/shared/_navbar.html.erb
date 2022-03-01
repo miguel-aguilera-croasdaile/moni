@@ -9,5 +9,11 @@
     <%= link_to "BROWSE", products_path, class: "navbar-link" %>
     <%= link_to "ORDERS", orders_path, class: "navbar-link" %>
     <%= link_to "CART (#{@cart.cart_items.count})", "/cart", class: "navbar-link" %>
+    <% if current_user %>
+      <%= link_to "Sign out", destroy_user_session_path, :method => :delete, class: "navbar-link" %>
+    <% else %>
+      <%= link_to "Sign in", new_user_session_path, class: "navbar-link" %>
+
+    <% end %>
   </div>
 </div>

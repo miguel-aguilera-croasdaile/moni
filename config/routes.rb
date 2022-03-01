@@ -14,5 +14,7 @@ Rails.application.routes.draw do
     resources :cart_items, only: [:destroy]
   end
 
+  mount StripeEvent::Engine, at: '/stripe-webhooks'
+
 end
 

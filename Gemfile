@@ -21,6 +21,7 @@ gem "pundit"
 gem 'cloudinary'
 gem 'faker'
 gem 'stripe'
+gem 'stripe_event'
 gem 'money-rails'
 
 

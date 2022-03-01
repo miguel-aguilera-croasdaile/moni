@@ -14,8 +14,5 @@ Rails.application.routes.draw do
     resources :cart_items, only: [:destroy]
   end
 
-  get "/add_to_cart/:product_id", to: "products#add_to_cart"
-  get "/buy/:product_id", to: "products#buy_directly"
-
 end
 

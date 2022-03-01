@@ -1,24 +1,21 @@
 class ApplicationController < ActionController::Base
-  # before_action :authenticate_user!
   before_action :set_cart
   before_action :store_user_location!, if: :storable_location?
 
-  # add_flash_types :cart_add
-
   include Pundit
 
-  private
-
   def set_cart
+    # force session load in the meantime i fix session not being loaded
+    session["init"] = true
     if user_signed_in?
       @cart = current_user.cart
     else
       if Cart.exists?(id: session[:cart_id])
         @cart = Cart.find(session[:cart_id])
       else
-        cart = Cart.new()
-        cart.save!
-        session[:cart_id] = cart.id
+        @cart = Cart.new()
+        @cart.save!
+        session[:cart_id] = @cart.id
       end
     end
   end

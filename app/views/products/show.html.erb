@@ -1,31 +1,29 @@
 <div class="wrapper">
   <div class="row">
     <div class="col-12 col-md-7">
-      <div class="product-image-wrapper">
-        <% cl_image_tag @product.photo.key, :crop=>"fill", class: "image-wrapper" %>
-      </div>
+      <%= cl_image_tag @product.cover_photo.key, :crop=>"fill", class: "product-show-image" %>
     </div>
     <div class="col-12 col-md-5">
       <div class="product-info">
         <div class="col-12">
           <p><%= @product.name %></p>
-          <p><%= @product.description %></p>
+          <p><%= humanized_money_with_symbol(@product.price) %></p>
         </div>
       </div>
       <div class="product-pricing">
         <div class="col-12">
-          <p>$<%= @product.price %></p>
+          <p><%= @product.description %></p>
         </div>
       </div>
       <div class="product-purchasing row">
-        <div class="col-6">
-          <%= link_to "/add_to_cart/#{@product.id}" do %>
-            <button class="button primary-button wide-button">Add to Cart</button>
-          <% end %>
-        </div>
-        <div class="col-6">
-          <%= link_to "/buy/#{@product.id}" do %>
-            <button class="button primary-button wide-button">Buy</button>
+        <%# <div class="col-6">
+          <button class="button primary-button wide-button">Add to Cart</button>
+        </div> %>
+        <div class="col-12">
+          <%= form_tag orders_path do %>
+            <%= hidden_field_tag 'product_id', @product.id %>
+            <%= hidden_field_tag 'purchase_method', "direct" %>
+            <%= submit_tag 'Purchase', class: 'button primary-button wide-button' %>
           <% end %>
         </div>
       </div>

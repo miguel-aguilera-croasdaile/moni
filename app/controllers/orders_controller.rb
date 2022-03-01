@@ -17,28 +17,31 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.create()
-    if user_signed_in?
-      @order.update(user: current_user)
-    else
-      @order.update(customer_session_id: session[:session_id])
-    end
-    @order.save!
-    @order.price = 0
-    @cart.cart_items.each do |c|
-      order_item = OrderItem.new
-      order_item.order = @order
-      order_item.product = c.product
-      order_item.price = c.price
-      order_item.quantity = c.quantity
-      order_item.save!
-      @order.update(price: @order.price += order_item.price)
-    end
-    @order.save!
-    if @order.save
-      @cart.clear
-    end
-    redirect_to order_path(@order)
+
+    @product = Product.find(params[:product_id])
+    @order = Order.create!(amount: @product.price, status: 'pending', user: current_user)
+
+    session = Stripe::Checkout::Session.create(
+      payment_method_types: ['card'],
+      line_items: [{
+        name: @product.name,
+        images: [@product.cover_photo.key],
+        amount: @product.price_cents,
+        currency: 'usd',
+        quantity: 1
+        }],
+        success_url: order_url(@order),
+        cancel_url: order_url(@order)
+      );
+
+    @order.update(checkout_session_id: session.id)
+    redirect_to new_order_payment_path(@order)
+  end
+
+  private
+
+  def order_params
+    params.require(:order).permit(:amount, :status, :user)
   end
 
 end

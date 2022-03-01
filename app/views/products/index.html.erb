@@ -1,14 +1,12 @@
 <div class="wrapper">
   <div class="row">
-    <% @products.each do |l| %>
+    <% @products.each do |product| %>
       <div class="product-card-wrapper col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
-        <%= link_to product_path(l) do %>
+        <%= link_to product_path(product) do %>
           <div class="product-card">
-            <div class="product-image-wrapper">
-              <%= cl_image_tag l.photo.key, :crop=>"fill", class: "image-wrapper" %>
-            </div>
-            <p class="product-name"><%= l.name %></p>
-            <p> <b> $<%= l.price %> </b> </p>
+            <%= cl_image_tag product.cover_photo.key, class: "product-index-image" %>
+            <p><%= product.name %></p>
+            <p> <%= humanized_money_with_symbol(product.price) %></p>
           </div>
         <% end %>
       </div>

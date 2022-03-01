@@ -1,54 +1,18 @@
-<div class="wrapper">
-  <div class="d-flex">
-    <div class="col-7">
-      <div class="shipping-info-form">
-      </div>
-      <div id="paypal-button-container"></div>
-    </div>
-    <div class="col-5">
-      <% @order.order_items.each do |c| %>
-        <div class="d-flex">
-          <div class="col-4">
-            <div class="product-image-wrapper small"></div>
-          </div>
-          <div class="col-4">
-            <p><%= c.product.name %> x <%= c.quantity %></p>
-          </div>
-          <div class="col-4">
-            <p>$<%= c.price * c.quantity %></p>
-          </div>
-        </div>
-      <% end %>
-      <hr>
-      <div class="d-flex justify-content-end">
-        Subtotal:
-        <p> $ <%= @total %></p>
-      </div>
+<div class="container">
+  <div class="row py-4">
+    <div class="col">
+      <h1>Checkout summary</h1>
+      <button id="pay" class="btn btn-primary">Pay</button>
+      <script src="https://js.stripe.com/v3/"></script>
+      <script>
+        const paymentButton = document.getElementById('pay');
+        paymentButton.addEventListener('click', () => {
+          const stripe = Stripe('<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>');
+          stripe.redirectToCheckout({
+            sessionId: '<%= @order.checkout_session_id %>'
+          });
+        });
+      </script>
     </div>
   </div>
 </div>
-<script src="https://www.paypal.com/sdk/js?client-id=ARwg6l5EMoWDgtFn6Xk6DWHxsM_Gn58Z1uAUxNditIkDaq_ZxVgWvKZ6c71aqB6wAosmG8dhzMw_2wUX"></script>
-<script>
-  price = '<%= @order.price %>';
-  paypal.Buttons({
-    createOrder: function(data, actions) {
-      // This function sets up the details of the transaction, including the amount and line item details.
-      return actions.order.create({
-        purchase_units: [{
-          amount: {
-            value: price
-          }
-        }]
-      });
-    },
-    onApprove: function(data, actions) {
-      // This function captures the funds from the transaction.
-      return actions.order.capture().then(function(details) {
-        // This function shows a transaction success message to your buyer.
-        alert('Transaction completed by ' + details.payer.name.given_name);
-      });
-      // post to controller to update order status
-    }
-  }).render('#paypal-button-container');
-  //This function displays Smart Payment Buttons on your web page.
-</script>

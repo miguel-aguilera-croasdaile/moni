@@ -11,26 +11,14 @@
   }
 }
 
-.product-image-wrapper{
-  min-height: 150px;
-  border-radius: $border-radius;
+.product-index-image{
+  min-height: 100px;
   width: 100%;
   background-color: $primary;
 }
 
-.product-image-wrapper.small{
-  min-height: 100px;
-}
-
-.product-flat{
-  padding: 20px;
-  background-color: white;
-}
-
-.stars, .certificates{
-  i{line-height: inherit !important;}
-}
-
-.small-image{
-  border-radius: $border-radius;
+.product-show-image{
+  min-height: 150px;
+  width: 100%;
+  background-color: $primary;
 }
